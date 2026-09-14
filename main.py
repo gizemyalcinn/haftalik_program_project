@@ -1,3 +1,8 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from database import Database
 from ders_modulu import DersProgrami  # dosya adı değiştiği için import da değişti
 from kullanici_modulu import KullaniciModulu  # Kullanıcı modülünü ekliyoruz
@@ -123,7 +128,12 @@ def derslik_modulu(db):
 
 # Ana Menü
 def main():
-    db = Database(host="localhost", user="root", password="1234", database="app")
+    db = Database(
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
+)
 
     while True:
         print("\nAna Menü: ")
